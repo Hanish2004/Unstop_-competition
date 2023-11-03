@@ -1,5 +1,5 @@
 # Project Name
-
+Vital Ease
 ## Description
 
 This project contains the code for a web application designed to cater to different user groups: doctors, elders, and guardians. The application is primarily focused on providing a seamless user experience for each category. 
