@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Eye Care Bot</title>
+</head>
+<body>
+    <div id="chatPopup" class="popup">
+        <div class="chat-container">
+            <table class="container">
+                <tr>
+                    <td>
+                        <img src="https://i.pinimg.com/originals/49/ca/da/49cada834f5d045fd0d5c421c38c8520.png" width="100px" height="100px">
+                    </td>
+                    <td>
+                        <div id="text"></div>
+                    </td>
+                </tr>
+            </table>
+            <div class="chat">
+                <div id="chatArea" class="chat-area" style="font-size: 13px;"></div>
+                <br>
+                <table>
+                    <tr>
+                        <td>
+                            <input id="userInput" placeholder="Type your message..." onkeypress="handleKeyPress()">
+                        </td>
+                        <td>
+                            <button id="button" onclick="submitQuestion()">Ask</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+var string = "Welcome to your new home, where your wisdom and experience are cherished.";
+var array = string.split("");
+var timer;
+
+function frameLooper() {
+    if (array.length > 0) {
+        document.getElementById("text").innerHTML += array.shift();
+    } else {
+        clearTimeout(timer);
+    }
+    loopTimer = setTimeout('frameLooper()', 70); /* change 70 for speed */
+}
+
+function handleKeyPress(event) {
+    if (event.key === 'Enter') {
+        submitQuestion();
+    }
+}
+
+// Your other JavaScript functions here
+
+// Auto-open the chat when the page loads
+window.onload = function () {
+    toggleChat();
+};
+</script>
+
+
+<style>
+
+
+.svg {
+        width: 130px;
+        margin: 0 auto;
+    }
+    
+    path {
+        stroke: rgb(28, 27, 27);
+        stroke-dashoffset: 2000;
+        stroke-dasharray: 2000;
+        stroke-width: 1px;
+        fill: rgb(129, 127, 127);
+        fill-opacity: 0;
+        -webkit-animation: draw 2s forwards, FillIn 1s 2s ease-in forwards;
+        -moz-animation: draw 2s forwards, FillIn 1s 2s ease-in forwards;
+        animation: draw 2s forwards, FillIn 1s 2s ease-in forwards;
+    }
+    
+    #pupil {
+        stroke: #087bff;
+        fill: #12F6FF;
+        position: absolute;
+    }
+    
+    @-webkit-keyframes draw {
+        to {
+            stroke-dashoffset: 4000;
+        }
+    }
+    
+    @-moz-keyframes draw {
+        to {
+            stroke-dashoffset: 4000;
+        }
+    }
+    
+    @keyframes draw {
+        to {
+            stroke-dashoffset: 4000;
+        }
+    }
+    
+    @keyframes FillIn {
+        from {
+            fill-opacity: 0;
+        }
+        to {
+            fill-opacity: 1;
+        }
+    }
+    /* styles.css */
+
+    .note-container {
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin: 20px auto;
+        max-width: 500px;
+        border-radius: 5px;
+    }
+
+    .note {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+.container {
+    background: linear-gradient(to bottom, #8A2BE2, #9400D3);    padding: 20px;
+    border-radius: 10px;
+}
+
+#text {
+    font-size: 13px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
+
+.popup {
+    /* Your existing styles */
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    border: none;
+    background-color: rgb(243, 158, 2);
+}
+
+.typing-indicator {
+    display: inline-block;
+    animation: typing 1.5s infinite;
+}
+
+@keyframes typing {
+    0%, 100% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+.chat p {
+    opacity: 0;
+    animation: fade-in 0.5s ease forwards;
+}
+
+@keyframes fade-in {
+    to {
+        opacity: 1;
+    }
+}
+
+.bot-profile-img {
+    transition: transform 0.3s ease-in-out;
+}
+
+.bot-message:hover .bot-profile-img {
+    transform: scale(1.05);
+    font-size: x-small;
+}
+
+#button:hover {
+    background-color: #0056b3;
+    /* Change to your desired hover color */
+    transform: scale(1.05);
+}
+
+#openChatBtn {
+    margin-left: 1300px;
+    margin-top: 600px;
+    position: absolute;
+    color: white;
+}
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 20px;
+}
+
+h1 {
+    color: #007bff;
+}
+
+.chat-container {
+    max-width: 350px;
+    margin: 20px auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 5px;
+    border: hidden;
+}
+
+.chat {
+    display: flex;
+    flex-direction: column;
+}
+
+#userInput {
+    resize: none;
+    border: 1px solid #66676b;
+    padding: 6px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.chat-area {
+    max-height: 150px;
+    overflow-y: auto;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    border: hidden;
+}
+
+#button {
+    margin-top: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Add padding for "You" and user input */
+.chat p.user-message {
+    padding-left: 20px; /* Adjust as needed */
+    padding: 15px;
+    font-size: small;
+    background-color: #a8a7a7;
+    border-radius: 8px;
+    border: hidden;
+}
+
+/* Add padding for "Bot" and chat messages */
+.chat p.bot-message {
+    padding-right: 20px; /* Adjust as needed */
+    font-size: x-small;
+
+}
+.chat-area p span {
+    padding: 5px;
+}
+
+.chat-area p.user-message {
+    margin-bottom: 10px;
+   
+
+}
+
+/* Adjust the margin for bot messages to create a separation between messages */
+.chat-area p.bot-message {
+    margin-top: 10px;
+}
+
+    .container{
+        background: linear-gradient(to bottom, #adadeb, #D8BFD8);
+padding: 20px;
+border-radius: 10px;
+
+    }
+    #text {
+  font-size: 13px;
+}
+    .popup {
+    /* Your existing styles */
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    border: none;
+    background-color: rgb(243, 158, 2);
+    
+}
+.typing-indicator {
+    display: inline-block;
+    animation: typing 1.5s infinite;
+}
+
+@keyframes typing {
+    0%, 100% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+.chat p {
+    opacity: 0;
+    animation: fade-in 0.5s ease forwards;
+}
+
+@keyframes fade-in {
+    to {
+        opacity: 1;
+    }
+}
+.bot-profile-img {
+    transition: transform 0.3s ease-in-out;
+}
+
+.bot-message:hover .bot-profile-img {
+    transform: scale(1.05);
+}
+#button:hover {
+    background-color: #0056b3; /* Change to your desired hover color */
+    transform: scale(1.05);
+}
+
+
+#openChatBtn{
+    margin-left: 1300px;
+    margin-top: 600px;
+    position: absolute;
+    color : white;
+    
+
+}
+@media (max-width: 767px) {
+    .popup {
+        width: 75%;
+        max-width: 320px; /* Limit the maximum width for larger screens */
+    }
+}
+
+    .popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+        max-width: 350px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        padding: 10px;
+        border-radius: 10px;
+    }
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 20px;
+}
+
+h1 {
+    color: #77aee9;
+}
+
+.chat-container {
+    max-width: 350px;
+    margin: 20px auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 5px;
+    border: hidden;
+
+
+}
+
+.chat {
+    display: flex;
+    flex-direction: column;
+}
+
+#userInput {
+    resize: none;
+    border: 1px solid #66676b;
+    padding: 6px;
+    border-radius: 5px;
+    margin-top: 10px;
+    background:"linear-gradient(to bottom, grey, white)";
+
+}
+
+.chat-area {
+    max-height: 150px;
+    overflow-y: auto;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    border: hidden;
+}
+
+#button {
+    margin-top: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    
+    
+}
+
+
+
+
+</style>
+
+    <script>
+
+
+function toggleChat() {
+    const chatPopup = document.getElementById('chatPopup');
+
+    if (chatPopup.style.display === 'block') {
+        chatPopup.style.display = 'none';
+    } else {
+        chatPopup.style.display = 'block';
+        // Additional actions you want to perform when opening the chatbox
+    }
+}
+
+
+
+function toggleChat() {
+    const openChatBtn = document.getElementById('openChatBtn');
+    const chatPopup = document.getElementById('chatPopup');
+    const noteMessage = document.getElementById('noteMessage'); // Get the note message element
+
+    if (chatPopup.style.display === 'block') {
+        chatPopup.style.display = 'none';
+        openChatBtn.innerHTML = '<img src="https://th.bing.com/th/id/R.6130872050dc0ce0f9349426628ea2fb?rik=ND2YQEYoKS1SaQ&riu=http%3a%2f%2fclipart-library.com%2fimages_k%2fdoctor-transparent-background%2fdoctor-transparent-background-20.png&ehk=wBkrQuKqvNMcT9NdPnpmKtujW8D3e6arjZmr%2fJpbpOk%3d&risl=&pid=ImgRaw&r=0" width="50px" height="50px" style="border: hidden; border-radius: 19px;">';
+
+        // ... (other changes you've made to the button styling)
+
+        // Show the note message and automatically close it after 10 seconds
+        noteMessage.style.display = 'block';
+        setTimeout(() => {
+            noteMessage.style.display = 'none';
+        }, 10000); // 10000 milliseconds = 10 seconds
+    } else {
+        chatPopup.style.display = 'block';
+        openChatBtn.innerHTML = '<img src="https://th.bing.com/th/id/OIP.AYUXaZSoeSBiDq9NBlqppAHaHa?pid=ImgDet&rs=1" width="40px" height="40px" style="border: hidden; border-radius: 19px;">';
+        // ... (other changes you've made to the button styling)
+
+        // Start typing animation when chat is opened
+        frameLooper();
+
+        // Open the popup in full screen on mobile devices
+        if (window.innerWidth <= 768) {
+            chatPopup.style.width = '100%';
+            chatPopup.style.height = '100%';
+            chatPopup.style.left = '0';
+            chatPopup.style.top = '0';
+            chatPopup.style.borderRadius = '0';
+        }
+    }
+}
+
+        var string ="Welcome to your new home, where your wisdom and experience are cherished."
+;
+var array = string.split("");
+var timer;
+
+function frameLooper() {
+    if (array.length > 0) {
+        document.getElementById("text").innerHTML += array.shift();
+    } else {
+        clearTimeout(timer);
+    }
+    loopTimer = setTimeout('frameLooper()', 70); /* change 70 for speed */
+}
+
+function handleKeyPress(event) {
+    if (event.key === 'Enter') {
+        submitQuestion();
+    }
+}
+
+
+
+
+
+
+
+
+
+ 
+// ... (rest of your existing JavaScript code)
+
+    const responses = {  "oldAgeMedicine": "As we age, our bodies may metabolize medications differently. It's important to inform your healthcare provider about all the medications you're taking, including over-the-counter drugs and supplements, to avoid potential interactions or side effects.",
+  "medicationSafety": "Medication safety is crucial. Always follow your doctor's prescribed dosage and instructions, and use a pill organizer if needed to prevent missed doses.",
+  "sideEffects": "Some medications may have side effects that can be more pronounced in older individuals. If you experience any unusual symptoms, contact your healthcare provider immediately.",
+  "polypharmacy": "Polypharmacy, or taking multiple medications, can be common in older adults. Regular medication reviews with your doctor can help simplify your regimen and reduce the risk of adverse effects.",
+  "vitaminSupplements": "While supplements can be helpful, it's best to get your vitamins and minerals from a balanced diet. Discuss with your healthcare provider if you need supplements.",
+  "painManagement": "Effective pain management is essential. Your doctor can help you find the right treatment options, which may include physical therapy, medications, or other interventions.",
+  "dietAndNutrition": "A balanced diet is vital for your overall health. It can help manage chronic conditions and provide the necessary nutrients. Consider consulting with a nutritionist for personalized advice.",
+  "exerciseAndMobility": "Staying active can improve your mobility and overall well-being. Your doctor can recommend appropriate exercises and activities tailored to your age and physical condition.",
+  "memoryLoss": "Mild memory changes are common as we age, but if you experience significant memory loss or cognitive decline, it's crucial to discuss it with your doctor for proper evaluation and guidance.",
+  "fallsPrevention": "Falls are a leading cause of injuries among older adults. Discuss with your doctor about strategies to prevent falls, including exercise and home safety modifications.",
+  "sleepQuality": "Quality sleep is essential for your health. If you have trouble sleeping, talk to your doctor about potential solutions or sleep disorders that may be affecting your rest.",
+  "gastrointestinalHealth": "As we age, digestive issues can arise. Maintain a fiber-rich diet and stay hydrated. If you have concerns, consult your doctor for evaluation and advice.",
+  "visionCare": "Regular eye check-ups are crucial for maintaining good vision. Age-related eye conditions like cataracts and glaucoma can be managed with timely intervention.",
+  "hearingLoss": "Hearing loss is common in older age. A hearing evaluation can help determine if hearing aids or other solutions are necessary to improve your quality of life.",
+  "dentureCare": "Proper denture care is essential to prevent oral health issues. Follow your dentist's instructions for cleaning and maintenance.",
+  "incontinenceIssues": "Incontinence is a common concern among older adults. Discuss with your doctor for guidance on management and treatment options.",
+  "arthritisManagement": "Arthritis can impact mobility and comfort. Your doctor can recommend treatments, exercise, and pain management strategies to help you stay active.",
+  "diabetesManagement": "If you have diabetes, proper management is critical. Regular monitoring, medication, and a healthy lifestyle can help control blood sugar levels.",
+  "heartHealth": "Heart health is vital. Your doctor can provide guidance on diet, exercise, and medications to manage conditions like hypertension or heart disease.",
+  "osteoporosisPrevention": "Osteoporosis can increase the risk of fractures. Your doctor may recommend bone density scans and treatments to maintain bone health.",
+  "pneumoniaVaccination": "Pneumonia vaccination is recommended for older adults. Consult with your healthcare provider to ensure you're up to date with your immunizations.",
+  "cancerScreening": "Cancer screenings, such as mammograms and colonoscopies, are essential for early detection. Discuss your screening schedule with your doctor.",
+  "breathingProblems": "Breathing issues can be concerning. If you experience shortness of breath, persistent cough, or other respiratory problems, consult your doctor.",
+  "depressionAndAnxiety": "Mental health is as important as physical health. If you're struggling with depression or anxiety, your doctor can recommend therapy or medication options.",
+  "vaccinationRecommendations": "Vaccinations against influenza, shingles, and other diseases are often recommended for older adults. Stay updated with your vaccines to protect your health.",
+  "sexualHealth": "Maintaining sexual health is important. If you have concerns or questions, don't hesitate to discuss them with your healthcare provider.",
+  "endOfLifePlanning": "End-of-life planning can provide peace of mind. You can discuss advanced directives, living wills, and your preferences with your doctor.",
+  "medicationOrganization": "Managing multiple medications can be challenging. Ask your doctor or pharmacist about medication organization tools and techniques.",
+  "mobilityAids": "Mobility aids like canes, walkers, or wheelchairs can improve your independence. Consult with your doctor or physical therapist to find the right solutions.",
+  "homeSafety": "Safety modifications in your home, such as handrails and non-slip surfaces, can prevent accidents. Your doctor can recommend these changes if needed.",
+  "travelSafety": "If you plan to travel, consult your doctor for recommendations and necessary vaccinations or medications for your destination.",
+  "hormoneReplacement": "Hormone replacement therapy may be considered for specific conditions. Discuss the potential benefits and risks with your doctor.",
+  "surgeryConsiderations": "If surgery is recommended, ensure you understand the procedure, risks, and expected outcomes. Discuss any concerns with your surgeon.",
+  "cognitiveExercise": "Mental exercises and staying socially active can support cognitive health. Your doctor can recommend activities to keep your mind sharp.",
+  "alternativeMedicine": "If you're considering alternative or complementary therapies, talk to your doctor to ensure they are safe and suitable for your health condition.",
+  "supportNetwork": "Building a support network of family, friends, and community resources can provide emotional and practical assistance in your later years.",
+  "respiteCare": "If you're a caregiver, consider respite care to prevent burnout. Your doctor can help you explore options for temporary relief.",
+  "glaucoma": "I understand your concern about glaucoma. Glaucoma is a condition where the pressure inside the eye can damage the optic nerve, leading to vision loss. Regular eye check-ups are crucial, and we can discuss treatment options if needed.",
+    "diabetes": "Managing diabetes is important for your overall health. We'll work on a treatment plan that includes monitoring blood sugar, a healthy diet, and possibly medications. Regular check-ups are essential.",
+    "hypertension": "High blood pressure can increase the risk of heart disease. We'll monitor your blood pressure and discuss lifestyle changes and medications to keep it in check.",
+    "arthritis": "Arthritis can affect your mobility and comfort. We'll explore pain management options, exercise, and lifestyle changes to improve your quality of life.",
+    "osteoporosis": "Osteoporosis can make your bones more fragile. We can discuss bone health, calcium and vitamin D supplements, and exercises to prevent fractures.",
+    "heartDisease": "Heart health is a top priority. We'll address your heart condition with medications, lifestyle changes, and regular check-ups to reduce the risk of complications.",
+    "pneumonia": "Pneumonia can be serious, especially in older individuals. Stay up to date with vaccinations, and we can discuss ways to boost your immune system and lung health.",
+    "cancer": "Cancer screenings are vital. We'll ensure you receive regular screenings for early detection, and discuss treatment options if necessary.",
+    "depression": "Mental health is just as important as physical health. Let's explore counseling, therapy, or medication to help you cope with depression and anxiety.",
+    "memoryLoss": "Mild memory changes can occur with age, but significant memory loss should be evaluated. We can perform cognitive assessments and discuss interventions to maintain cognitive function.",
+    "painManagement": "Managing pain is a priority. We'll work on a pain management plan that may include medications, physical therapy, and other approaches to improve your comfort.",
+    "visionCare": "Regular eye check-ups are essential. We can address age-related eye conditions, such as cataracts and macular degeneration, to maintain good vision.",
+    "glaucoma": "I understand your concern about glaucoma. Glaucoma is a condition where the pressure inside the eye can damage the optic nerve, leading to vision loss. Regular eye check-ups are crucial, and we can discuss treatment options if needed.",
+    "diabetes": "Managing diabetes is important for your overall health. We'll work on a treatment plan that includes monitoring blood sugar, a healthy diet, and possibly medications. Regular check-ups are essential.",
+    "hypertension": "High blood pressure can increase the risk of heart disease. We'll monitor your blood pressure and discuss lifestyle changes and medications to keep it in check.",
+    "arthritis": "Arthritis can affect your mobility and comfort. We'll explore pain management options, exercise, and lifestyle changes to improve your quality of life.",
+    "osteoporosis": "Osteoporosis can make your bones more fragile. We can discuss bone health, calcium and vitamin D supplements, and exercises to prevent fractures.",
+    "heartDisease": "Heart health is a top priority. We'll address your heart condition with medications, lifestyle changes, and regular check-ups to reduce the risk of complications.",
+    "pneumonia": "Pneumonia can be serious, especially in older individuals. Stay up to date with vaccinations, and we can discuss ways to boost your immune system and lung health.",
+    "cancer": "Cancer screenings are vital. We'll ensure you receive regular screenings for early detection, and discuss treatment options if necessary.",
+    "depression": "Mental health is just as important as physical health. Let's explore counseling, therapy, or medication to help you cope with depression and anxiety.",
+    "memoryLoss": "Mild memory changes can occur with age, but significant memory loss should be evaluated. We can perform cognitive assessments and discuss interventions to maintain cognitive function.",
+    "painManagement": "Managing pain is a priority. We'll work on a pain management plan that may include medications, physical therapy, and other approaches to improve your comfort.",
+    "visionCare": "Regular eye check-ups are essential. We can address age-related eye conditions, such as cataracts and macular degeneration, to maintain good vision.",
+    "chronicObstructivePulmonaryDisease": "Chronic obstructive pulmonary disease (COPD) can affect your breathing. We'll discuss medications, breathing exercises, and lifestyle changes to manage the condition and improve your lung function.",
+    "stroke": "If you're at risk of stroke, it's essential to control factors like blood pressure and cholesterol. We'll also discuss the warning signs of a stroke and what to do in case of an emergency.",
+    "kidneyDisease": "Kidney disease can impact your overall health. We'll monitor kidney function and discuss dietary changes and medications to support kidney health.",
+    "influenza": "Getting an annual flu shot is recommended for older adults. It can help protect you from severe flu symptoms and complications.",
+    "rheumatoidArthritis": "Rheumatoid arthritis can be painful. We'll discuss medications, physical therapy, and joint protection strategies to manage the condition.",
+    "parkinsonsDisease": "Parkinson's disease can affect movement and coordination. We'll explore medications and therapies to improve your quality of life.",
+    "hypothyroidism": "Hypothyroidism can cause fatigue and other symptoms. We'll perform thyroid function tests and discuss hormone replacement therapy if necessary.",
+    "oralHealth": "Oral health is vital. Regular dental check-ups and proper dental hygiene are essential to prevent dental problems and maintain overall well-being.",
+    "macularDegeneration": "Macular degeneration is an age-related eye condition. We'll discuss treatment options to slow its progression and preserve your central vision.",
+"hi":"hello hero",
+"hello":"hi hero"
+    };
+
+
+
+    
+    function generateBotResponse(userInput) {
+    // Convert the user input to lowercase for case-insensitivity
+    const lowerCaseInput = userInput.toLowerCase();
+
+    // Check if the user input contains any grammar mistakes
+    const hasGrammarMistake = /[^a-zA-Z0-9,.?!()\s]/.test(userInput);
+
+    // If there is a grammar mistake, return the default response
+    if (hasGrammarMistake) {
+        return "I'm sorry there is a mistake in the question.";
+    }
+
+    // Initialize an array to store responses for multiple keywords
+    const botResponses = [];
+
+    // Search for keywords in the user input and collect responses
+    for (const keyword in responses) {
+        if (lowerCaseInput.includes(keyword)) {
+            botResponses.push(responses[keyword]);
+        }
+    }
+
+    // If no specific keyword found, provide a generic response
+    if (botResponses.length === 0) {
+        botResponses.push("I'm sorry, I don't have information on that topic. Please try another question.");
+    }
+
+    return botResponses.join("\n\n"); // Join the responses with newlines to display them separately
+}
+
+function appendToChat(userInput, botResponse) {
+    const chatArea = document.getElementById('chatArea');
+
+    // Create user and bot message containers
+    const userMessageContainer = document.createElement('div');
+    const botMessageContainer = document.createElement('div');
+
+    // Create user and bot labels
+    const userLabel = document.createElement('span');
+    userLabel.textContent = 'You: ';
+    userLabel.style.color = 'red';
+    userLabel.style.fontSize = 'small';
+    userLabel.style.fontStyle="bold";
+    userLabel.style.textAlign="right";
+
+    const botLabel = document.createElement('span');
+    botLabel.textContent = 'Bot: ';
+    botLabel.style.color = 'green';
+    botLabel.style.fontSize = 'small';
+    botLabel.style.margin= "13px";
+
+    // Create user and bot messages
+    const userMessage = document.createElement('p');
+    const botMessage = document.createElement('p');
+
+    // Set the text and styles for user and bot messages
+    userMessage.textContent = userInput;
+    userLabel.style.float="right";
+    userLabel.style.fontWeight="bold";
+
+    userMessage.style.float= 'right';
+    userMessage.style.fontSize="15px";
+    userMessage.style.fontFamily="sans-serif";
+    userMessage.style.background="linear-gradient(to bottom, #f9f9f9, #d3d3d3)";
+    userMessage.style.padding="8px";
+    userMessage.style.borderRadius="5px";
+    userMessage.style.borderRadius="fixed";
+
+    botMessage.textContent = botResponse;
+    botMessage.style.textAlign = 'left';
+    botMessage.style.fontSize="15px";
+    botMessage.style.padding="15px";
+    botMessage.style.background="linear-gradient(to bottom, #0074D9, #3498DB)";
+    botMessage.style.borderRadius="20px";
+    userMessage.style.fontFamily="sans-serif";
+    botLabel.style.fontWeight="bold";
+    botLabel.style.marginTop="20px";
+    // Create a new image element for the bot profile image
+    const botProfileImg = document.createElement('img');
+    botProfileImg.src = 'https://www.pngitem.com/pimgs/m/198-1985222_avatar-doctor-png-transparent-png.png';
+    botProfileImg.style.borderRadius = '1px';
+    botProfileImg.alt = 'Bot Profile';
+    botProfileImg.width = 40;
+    botProfileImg.height = 40;
+    botProfileImg.style.marginTop="20px";
+
+
+    // Append user label and message to user message container
+    userMessageContainer.appendChild(userLabel);
+    userMessageContainer.appendChild(userMessage);
+
+    // Append bot label, profile image, and message to bot message container
+    botMessageContainer.appendChild(botLabel);
+    botMessageContainer.appendChild(botProfileImg);
+    botMessageContainer.appendChild(botMessage);
+
+    // Set classes for animations
+    userMessageContainer.classList.add('fadeIn');
+    botMessageContainer.classList.add('fadeIn');
+
+    // Add the current answer above the past answer
+    chatArea.appendChild(userMessageContainer);
+    chatArea.appendChild(botMessageContainer);
+
+    // Scroll to the bottom of the chat area to show the latest messages
+    chatArea.scrollTop = chatArea.scrollHeight;
+
+    
+}
+
+
+function submitQuestion() {
+    const userInput = document.getElementById('userInput').value;
+    const botResponse = generateBotResponse(userInput);
+
+    appendToChat(userInput, botResponse);
+
+    // Clear the input field after submission
+    document.getElementById('userInput').value = '';
+}
+    </script>
+
+

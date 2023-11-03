@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Responsive Nav Bar</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>  
+<div class="nav" id="mynav">
+        <div class="logo">
+          
+                <h2>LOGO</h2>
+      
+        </div>
+
+        <ul class="menu-list">
+            <li><a href="D:\project\compet\message.html">Message </a></li>
+            <li><a href="D:\project\compet\index.html">Calender</a></li>
+            <li><a href="D:\project\compet\contact_form.html">Contact Form</a></li>
+            <li><a href="D:\project\compet\chatbot2.html">ChatBot</a></li>
+        </ul>
+
+        <div class="menu">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+
+
+    </div>
+
+    <img src="https://www.lcbseniorliving.com/wp-content/uploads/2019/02/iStock-876906352.jpg" alt="header" class="image-responsive" />
+
+   
+  
+    <script>
+
+
+
+
+        const navSlide = () => {
+            const menu = document.querySelector('.menu');
+            const nav = document.querySelector('.menu-list');
+            const menuList = document.querySelectorAll('.menu-list li');
+
+            menu.addEventListener('click', () => {
+                nav.classList.toggle('nav-active');
+
+                menuList.forEach((link, index) => {
+                    if (link.style.animation) {
+                        link.style.animation = '';
+                    }
+                    else {
+                        link.style.animation = `navReveal 0.5s ease forwards ${index / 7 + 0.5}s`;
+                    }
+                });
+                menu.classList.toggle('toggle');
+            });
+        }
+
+        navSlide();
+
+        $(function () {
+            var header = $("#mynav");
+            $(window).scroll(function () {
+                var scroll = $(window).scrollTop();
+
+                if (scroll >= 200) {
+                    header.removeClass('nav').addClass('nav2');
+        }
+            else {
+                header.removeClass('nav2').addClass('nav');
+            }
+            });
+        });
+    </script>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+
+
+
+</html>
+
+
+
+
+<style>
+    *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+.image-responsive{
+    width:100%;
+}
+
+.nav{
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    height:60px;
+    font-family:'Poppins', sans-serif;
+    background-color:rgba(0,0,0,0.2);
+    position:fixed;
+    z-index:1;
+    width:100%;
+    transition:0.2s;
+}
+
+
+.logo{
+    z-index:3;
+}
+
+.logo img{
+    width:50px;
+}
+
+.menu-list {
+    display: flex;
+    width: 45%;
+    justify-content: space-around;
+}
+
+    .menu-list li {
+        list-style: none;
+    }
+
+    .menu-list a {
+        color: #fff;
+        text-decoration: none;
+        letter-spacing: 3px;
+        font-weight: bold;
+        font-size: 16px;
+        transition: 0.2s;
+        text-transform: uppercase;
+    }
+
+        .menu-list a:hover {
+            color: #ccc;
+            transition: 0.2s;
+        }
+
+.menu div{
+    width:25px;
+    height:3px;
+    margin:5px;
+    background-color:#fff;
+    z-index:3;
+}
+
+.menu{
+    display:none;
+    cursor:pointer;
+}
+
+@media screen and (max-width:1200px){
+    .menu-list {
+        width: 55%;
+    }
+}
+
+@media screen and (max-width:1000px){
+    .menu-list a {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width:768px) {
+    html, body {
+        position: relative;
+    }
+
+    .menu-list {
+        position: absolute;
+        right: 0px;
+        height: 400px;
+        top: 60px;
+        background-color: #000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        transform: translateY(-150%);
+        transition: transform 0.5s ease-in;
+        z-index: 1;
+    }
+
+        .menu-list li {
+            opacity: 0;
+        }
+
+    .menu {
+        display: block;
+    }
+
+    .nav {
+        background-color: #000;
+    }
+}
+    .nav-active{
+        transform: translateX(0%);
+    }
+
+    @keyframes navReveal{
+        from{
+            opacity:0;
+            transform: translateY(-50px);
+        }
+        to{
+            opacity:1;
+            transform: translateY(0px);
+        }
+    }
+
+    .toggle .line1{
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+
+    .toggle .line2{
+        opacity:0;
+    }
+
+.toggle .line3 {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+.container{
+    width:80%;
+    margin:100px auto;
+}
+
+.container h1{
+    margin-bottom:50px;
+  text-align:center;
+}
+
+.nav2 {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 60px;
+    font-family: 'Poppins', sans-serif;
+    background-color: #000;
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    transition: 0.2s;
+}
+
+#mynav {
+    top: 0px !important;
+}
+</style>
